@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model fraud_transactions {
+  id                    Int       @id @default(autoincrement())
+  trans_date_trans_time DateTime? @db.Timestamp(6)
+  cc_num                String?   @db.VarChar
+  merchant              String?   @db.VarChar
+  category              String?   @db.VarChar
+  amt                   Float?
+  city                  String?   @db.VarChar
+  state                 String?   @db.VarChar
+  unix_time             Float?
+  merch_lat             Float?
+  merch_long            Float?
+  reason                String?   @db.VarChar
+  is_fraud              Boolean?
+
+  @@index([id], map: "ix_fraud_transactions_id")
+}
+
+
+model user{
+  id           String     @id @default(uuid())
+   name         String?
+  email        String?  @unique
+  password String?
+  role         String?
+
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}
