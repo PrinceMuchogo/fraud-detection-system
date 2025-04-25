@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build && prisma migrate deploy && tsx src/data/seeders/db.seed.ts",
+    "db:seed": "tsx src/data/seeders/db.seed.ts",
     "start": "next start",
     "lint": "next lint"
   },
@@ -37,6 +38,7 @@
     "react-select": "^5.8.0",
     "react-table": "^7.8.0",
     "react-toastify": "^11.0.5",
+    "recharts": "^2.15.3",
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
@@ -53,6 +55,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.19.3",
     "typescript": "^5"
   }
 }

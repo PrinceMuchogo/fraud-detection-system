@@ -9,8 +9,6 @@ declare module "next-auth" {
       role?: string; // Optional role
       email: string; // Email (already included by default)
       image?: string; // Profile image (already included by default)
-      profile_image_url?: string; // Custom profile image URL
-      subscriptions?: Subscription[]
     };
   }
 

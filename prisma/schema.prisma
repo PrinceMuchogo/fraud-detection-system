@@ -25,7 +25,6 @@ model fraud_transactions {
   @@index([id], map: "ix_fraud_transactions_id")
 }
 
-
 model user{
   id           String     @id @default(uuid())
    name         String?
