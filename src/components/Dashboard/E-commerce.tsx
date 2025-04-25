@@ -23,12 +23,15 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "react-toastify";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -50,6 +53,10 @@ export default function Home() {
     const intervalId = setInterval(fetchTransactions, 30000);
     return () => clearInterval(intervalId);
   }, [toast]);
+
+  const handleSignOut = () => {
+    router.push("/");
+  };
 
   return (
     <div className="animate-fade-in min-h-screen">
@@ -159,7 +166,11 @@ export default function Home() {
               </Button>
             </div> */}
             <div className="flex items-center gap-3">
-              <Button variant="outline" className="w-full justify-start">
+              <Button
+                onClick={handleSignOut}
+                variant="outline"
+                className="w-full justify-start"
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 Sign Out
               </Button>
